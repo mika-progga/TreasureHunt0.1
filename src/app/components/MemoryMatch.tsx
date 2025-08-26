@@ -39,7 +39,7 @@ export default function MemoryMatch() {
   const [won, setWon] = useState(false)
   const [showRules, setShowRules] = useState(true)
   const [gameStarted, setGameStarted] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(100)
+  const [timeLeft, setTimeLeft] = useState(200)
   const [showWinPopup, setShowWinPopup] = useState(false)
   const [gameEndedByTimeout, setGameEndedByTimeout] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
@@ -55,7 +55,7 @@ export default function MemoryMatch() {
     setWon(false)
     setShowWinPopup(false)
     setGameStarted(false)
-    setTimeLeft(100)
+    setTimeLeft(200)
     setGameEndedByTimeout(false)
     if (timerRef.current) {
       clearTimeout(timerRef.current)
@@ -64,7 +64,7 @@ export default function MemoryMatch() {
 
   const handleTimeUp = useCallback(() => {
     setGameStarted(false)
-    setTimeLeft(100)
+    setTimeLeft(200)
     setGameEndedByTimeout(true)
     setShowRules(true)
     if (timerRef.current) {
@@ -178,7 +178,7 @@ export default function MemoryMatch() {
             <p>
               <strong>Here&apos;s your clue:</strong>
             </p>
-            <div className={styles.clue}>&quot;Here lies the greatest magician...&quot;</div>
+            <div className={styles.clue}>&quot;They've got all the fame and names on plaques just beside the place,that got all snacks; travel a bit further to red bricked zone ; careful to check all corners and see beyond horizon...&quot;</div>
             <button className={styles.okButton} onClick={() => setShowWinPopup(false)}>
               Got it!
             </button>
@@ -214,6 +214,7 @@ export default function MemoryMatch() {
     </div>
   )
 }
+
 
 
 
