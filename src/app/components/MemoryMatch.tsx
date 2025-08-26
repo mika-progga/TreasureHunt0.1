@@ -39,7 +39,7 @@ export default function MemoryMatch() {
   const [won, setWon] = useState(false)
   const [showRules, setShowRules] = useState(true)
   const [gameStarted, setGameStarted] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(200)
+  const [timeLeft, setTimeLeft] = useState(100)
   const [showWinPopup, setShowWinPopup] = useState(false)
   const [gameEndedByTimeout, setGameEndedByTimeout] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
@@ -55,7 +55,7 @@ export default function MemoryMatch() {
     setWon(false)
     setShowWinPopup(false)
     setGameStarted(false)
-    setTimeLeft(200)
+    setTimeLeft(100)
     setGameEndedByTimeout(false)
     if (timerRef.current) {
       clearTimeout(timerRef.current)
@@ -64,7 +64,7 @@ export default function MemoryMatch() {
 
   const handleTimeUp = useCallback(() => {
     setGameStarted(false)
-    setTimeLeft(200)
+    setTimeLeft(100)
     setGameEndedByTimeout(true)
     setShowRules(true)
     if (timerRef.current) {
@@ -214,3 +214,4 @@ export default function MemoryMatch() {
     </div>
   )
 }
+
