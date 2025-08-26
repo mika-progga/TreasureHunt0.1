@@ -180,7 +180,7 @@ export default function MemoryMatch() {
             </p>
             <div className={styles.clue}>
               "They've got all the fame and names on plaques just beside the place,that got all snacks; travel a bit
-              further to red bricked zone ; careful to check all corners and see beyond horizon..."
+              further to red bricked zone ; careful to check all corners and see beyond horizon"
             </div>
             <button className={styles.okButton} onClick={() => setShowWinPopup(false)}>
               Got it!
@@ -217,6 +217,7 @@ export default function MemoryMatch() {
     </div>
   )
 }
+
 
 
 
