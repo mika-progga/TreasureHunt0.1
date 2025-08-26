@@ -175,7 +175,7 @@ export default function MemoryMatch() {
             <p>
               <strong>Here&apos;s your clue:</strong>
             </p>
-            <div className={styles.clue}>&quot;The answer lies where memories are made and stories unfold...&quot;</div>
+            <div className={styles.clue}>&quot;Here lies the greatest magician...&quot;</div>
             <button className={styles.okButton} onClick={() => setShowWinPopup(false)}>
               Got it!
             </button>
@@ -213,3 +213,4 @@ export default function MemoryMatch() {
     </div>
   )
 }
+
