@@ -178,10 +178,7 @@ export default function MemoryMatch() {
             <p>
               <strong>Here&apos;s your clue:</strong>
             </p>
-            <div className={styles.clue}>
-              "They&apos;ve got all the fame and names on plaques just beside the place,that got all snacks; travel a bit
-              further to red bricked zone ; careful to check all corners and see beyond horizon"
-            </div>
+            <div className={styles.clue}>&quot;They&apos;ve got all the fame and names on plaques just beside the place,that got all snacks; travel a bit further to red bricked zone ; careful to check all corners and see beyond horizon&quot;</div>
             <button className={styles.okButton} onClick={() => setShowWinPopup(false)}>
               Got it!
             </button>
