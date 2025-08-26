@@ -32,8 +32,6 @@ type Card = {
 }
 
 export default function MemoryMatch() {
-  // ...existing code...
-
   const [cards, setCards] = useState<Card[]>([])
   const [flipped, setFlipped] = useState<number[]>([])
   const [moves, setMoves] = useState(0)
@@ -41,12 +39,13 @@ export default function MemoryMatch() {
   const [won, setWon] = useState(false)
   const [showRules, setShowRules] = useState(true)
   const [gameStarted, setGameStarted] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(100) // 1.5 minutes
+  const [timeLeft, setTimeLeft] = useState(100)
   const [showWinPopup, setShowWinPopup] = useState(false)
+  const [gameEndedByTimeout, setGameEndedByTimeout] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const resetGame = useCallback(() => {
-  const shuffled = [...SYMBOLS, ...SYMBOLS]
+    const shuffled = [...SYMBOLS, ...SYMBOLS]
       .sort(() => Math.random() - 0.5)
       .map((s, i) => ({ id: i, symbol: s, isFlipped: false, isMatched: false }))
     setCards(shuffled)
@@ -57,6 +56,7 @@ export default function MemoryMatch() {
     setShowWinPopup(false)
     setGameStarted(false)
     setTimeLeft(100)
+    setGameEndedByTimeout(false)
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
@@ -65,9 +65,12 @@ export default function MemoryMatch() {
   const handleTimeUp = useCallback(() => {
     setGameStarted(false)
     setTimeLeft(100)
-    resetGame()
+    setGameEndedByTimeout(true)
     setShowRules(true)
-  }, [resetGame])
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     resetGame()
@@ -79,7 +82,6 @@ export default function MemoryMatch() {
         setTimeLeft(timeLeft - 1)
       }, 1000)
     } else if (timeLeft === 0 && !won) {
-      // Auto shuffle when time runs out
       handleTimeUp()
     }
 
@@ -89,10 +91,12 @@ export default function MemoryMatch() {
       }
     }
   }, [gameStarted, timeLeft, won, handleTimeUp])
-  
 
   const handleStartGame = () => {
     setShowRules(false)
+    if (gameEndedByTimeout) {
+      resetGame()
+    }
   }
 
   const handleClick = (i: number) => {
@@ -153,7 +157,6 @@ export default function MemoryMatch() {
             <h3>🧠 Memory Match Rules</h3>
             <div className={styles.rules}>
               <p>• You have 100 seconds to complete the game</p>
-
               <p>• Match all pairs of emojis to win</p>
               <p>• Timer starts when you click your first tile</p>
               <p>• If time runs out, the game will auto-shuffle</p>
@@ -189,8 +192,6 @@ export default function MemoryMatch() {
             <h2>🧠 Memory Match</h2>
             <div className={styles.stats}>
               <span className={timeLeft <= 30 ? styles.timeWarning : ""}>⏰ {formatTime(timeLeft)}</span>
-             
-             
             </div>
           </div>
 
@@ -213,4 +214,8 @@ export default function MemoryMatch() {
     </div>
   )
 }
+
+
+
+
 
